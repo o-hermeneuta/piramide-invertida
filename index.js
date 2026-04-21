@@ -28,8 +28,9 @@ function getTriplePositions(line) {
     while (i < line.length) {
         let j = i;
         while (j < line.length && line[j] === line[i]) j++;
-        if (j - i >= 3) {
-            for (let k = i; k < j; k++) positions[k] = true;
+        const groups = Math.floor((j - i) / 3);
+        for (let g = 0; g < groups; g++) {
+            for (let k = i + g * 3; k < i + g * 3 + 3; k++) positions[k] = true;
         }
         i = j;
     }
